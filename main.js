@@ -28,7 +28,7 @@ api.get('/Cake', (req, res) => {
 api.get('/user', (req, res) => {
 
   MongoClient.connect(url, function (err, db) {
-    db.admin().authenticate('ObiWan', 'HelloThere!', function(err,res){
+   
     if (err) throw err;
     var dbo = db.db("FDDW");
     dbo.collection("user").find({}, function (err, result) {
@@ -36,7 +36,7 @@ api.get('/user', (req, res) => {
       console.log(result);
       db.close();
     });
-    });
+    
   });
 
   res.status(200).send(result)
@@ -76,6 +76,7 @@ api.delete('/user/:uName', (req, res) => {
 //einen User hinzufügen
 api.post('/user', (req, res) => {
   MongoClient.connect(url, function (err, db) {
+    db.admin().authenticate('ObiWan', 'HelloThere!', function(err,res){
     if (err) throw err;
     var dbo = db.db("FDDW");
     var myobj = {
@@ -94,6 +95,7 @@ api.post('/user', (req, res) => {
       console.log("1 user created");
       db.close();
     });
+  });
   });
   res.status(201);
 });
