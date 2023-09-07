@@ -28,12 +28,14 @@ api.get('/Cake', (req, res) => {
 api.get('/user', (req, res) => {
 
   MongoClient.connect(url, function (err, db) {
+    db.admin().authenticate('ObiWan', 'HelloThere!', function(err,res){
     if (err) throw err;
     var dbo = db.db("FDDW");
     dbo.collection("user").find({}, function (err, result) {
       if (err) throw err;
       console.log(result);
       db.close();
+    });
     });
   });
 
