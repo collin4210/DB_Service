@@ -1,9 +1,9 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/FDDW";
+var url = "mongodb://ObiWan:HelloThere!@localhost:27017/FDDW";
 const express = require('express');
 const PORT = process.env.port || 5555;
 const api = express();
-
+saslprep = require('saslprep');
 
 api.listen(PORT, () => {
   MongoClient.connect(url, function (err, db) {
@@ -87,6 +87,20 @@ api.post('/user', (req, res) => {
       werkzeug: []
 
     };
+    dbo.collection("user").insertOne(myobj, function (err, res) {
+      if (err) throw err;
+      console.log("1 user created");
+      db.close();
+    });
+  });
+  res.status(201);
+});
+
+api.post('/test', (req, res) => {
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FDDW");
+    var myobj = {username: "CoolerMann",vorname: "Tim",nachname: "Busfahrer",plz: "42499",stadt: "Hueckeswagen",strasse: "Bongardstrasse",hnr: "6a",werkzeug: []};
     dbo.collection("user").insertOne(myobj, function (err, res) {
       if (err) throw err;
       console.log("1 user created");
