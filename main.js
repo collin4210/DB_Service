@@ -1,15 +1,23 @@
+main.js
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://fddwvs07.gm.fh-koeln.de:27017";
+var url = "mongodb://localhost:27017";
 const express = require('express');
-const PORT = process.env.port || 6969;
+const PORT = process.env.port || 5555;
 const api = express();
 
 api.listen(PORT, () => {
-    console.log("API läuft!")
+    console.log("API läuft!", PORT)
+});
+
+api.get('/',(req,res) => {
+        res.send("Et klappt");
 });
 
 //alle User ausgeben
 api.get('/user', (req,res) => {
+
+        console.log("Freddy Fazbear!");
+
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("FDDW");
