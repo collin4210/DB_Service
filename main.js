@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://ObiWan:HelloThere!@localhost:27017/FDDW";
+var url = "mongodb://ObiWan:HelloThere!@fddwvs07.gm.fh-koeln.de/?authMechanism=DEFAULT&authSource=admin";
 const express = require('express');
 const PORT = process.env.port || 5555;
 const api = express();
@@ -76,7 +76,7 @@ api.delete('/user/:uName', (req, res) => {
 //einen User hinzufügen
 api.post('/user', (req, res) => {
   MongoClient.connect(url, function (err, db) {
-    db.admin().authenticate('ObiWan', 'HelloThere!', function(err,res){
+   
     if (err) throw err;
     var dbo = db.db("FDDW");
     var myobj = {
@@ -95,7 +95,7 @@ api.post('/user', (req, res) => {
       console.log("1 user created");
       db.close();
     });
-  });
+  
   });
   res.status(201);
 });
