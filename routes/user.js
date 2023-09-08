@@ -14,15 +14,14 @@ async function getUsers(searchFunc) {
 
 router.get('/', (req, res) => {
     
-    const result =  getUsers(User.find({}));
+    const result = getUsers(User.find({}));
     res.json( result);
 });
 
 router.get('/:uName', function (req, res, next) {
-    User.find({ username: req.params.uName }, function (err, post) {
-        if (err) return next(err);
-        res.json(post);
-    });
+   const result = getUsers(User.find({username: req.params.uName }));
+   res.json(result);
+
 });
 
 router.post('/', function (req, res, next) {
