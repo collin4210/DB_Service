@@ -9,10 +9,10 @@ var bodyParser = require('body-parser')
 router.get('/', (req, res) => {
 
     User.find({}).then((result) =>
-        res.json(result).sendStatus(200)
+        res.json(result).send(200)
 
     ).catch((err) => {
-        res.json(err)
+    
 
     })
 
@@ -24,7 +24,7 @@ router.get('/:uName', function (req, res, next) {
     res.json(result).sendStatus(200)
 
     ).catch((err) => {
-        res.json(err)
+ 
 
     })
 
@@ -44,7 +44,7 @@ router.post('/',bodyParser.json(), function (req, res, next) {
     res.json(result).send(201)
 
     ).catch((err) => {
-        res.send(409)
+    
 
     })
 
@@ -55,8 +55,7 @@ router.delete('/:id', function (req, res, next) {
     User.findByIdAndRemove(req.params.id, req.body).then((result) =>
         res.sendStatus(200)
     ).catch((err) => {
-        res.send(409)
-
+     
     })
 });
 
