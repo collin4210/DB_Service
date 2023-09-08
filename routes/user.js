@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 router.get('/', (req, res) => {
 
     User.find({}).then((result) =>
-        res.json(result).send(200)
+        res.json(result).sendStatus(200)
 
     ).catch((err) => {
         res.json(err)
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.get('/:uName', function (req, res, next) {
     User.find({ username: req.params.uName }).then((result) =>
-    res.json(result).send(200)
+    res.json(result).sendStatus(200)
 
     ).catch((err) => {
         res.json(err)
