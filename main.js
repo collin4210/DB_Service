@@ -7,7 +7,7 @@ api.use('/user', user);
 var bodyParser = require('body-parser')
 
 mongoose.Promise = global.Promise;
-
+//connection established
 mongoose.connect('mongodb://localhost/FDDW', {
     authSource: "admin",
     user: "ObiWan",
