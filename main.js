@@ -8,7 +8,17 @@ api.use('/user', user);
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/FDDW')
+mongoose.connect('mongodb://localhost/FDDW', {
+    poolSize: 10,
+    authSource: "admin",
+    user: "ObiWan",
+    pass: "HelloThere!",
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false 
+
+})
    .then(() =>  console.log('connection successful'))
    .catch((err) => console.error(err));
 
