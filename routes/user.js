@@ -16,7 +16,7 @@ async function getUsers(searchFunc) {
 router.get('/', (req, res) => {
 
     User.find({}).then((result) =>
-        res.json(result)
+        res.send(200).json(result)
 
     ).catch((err) => {
         res.json(err)
@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 
 router.get('/:uName', function (req, res, next) {
     User.find({ username: req.params.uName }).then((result) =>
-        res.json(result)
+        res.send(200).json(result)
 
     ).catch((err) => {
         res.json(err)
@@ -48,10 +48,10 @@ router.post('/', function (req, res, next) {
         Email: Sreq.body.email
 
     }).then((result) =>
-        res.json(result)
+        res.send(201).json(result)
 
     ).catch((err) => {
-        res.json(err)
+        res.send(409)
 
     })
 
