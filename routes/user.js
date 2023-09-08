@@ -3,21 +3,18 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/user.js');
 
-async function getUsers() {
-    const Users = await User.find({});
+
+//Aus irgendeinem Grund geht das nur so, frag nicht danke!
+async function getUsers(searchFunc) {
+    const Users = await searchFunc;
     return Users;
 
 
 }
 
 router.get('/', (req, res) => {
-    /*
-    User.find(function (err, products) {
-        if (err) return next(err);
-        res.json(products);
-    });
-*/
-    const result =  getUsers();
+    
+    const result =  getUsers(User.find({}));
     res.json( result);
 });
 
