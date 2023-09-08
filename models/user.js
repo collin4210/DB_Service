@@ -5,6 +5,7 @@ var UserSchema = new mongoose.Schema({
  nachname: String,
  PLZ: Number,
  Adresse: String,
+ Stadt: String,
  Email: String,
  
  updated_at: { type: Date, default: Date.now },
