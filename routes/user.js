@@ -5,14 +5,6 @@ var User = require('../models/user.js');
 var bodyParser = require('body-parser')
 
 
-//Aus irgendeinem Grund geht das nur so, frag nicht danke!
-async function getUsers(searchFunc) {
-    const Users = await searchFunc;
-    return Users;
-
-}
-
-
 
 router.get('/', (req, res) => {
 
@@ -60,10 +52,12 @@ router.post('/',bodyParser.json(), function (req, res, next) {
 
 
 router.delete('/:id', function (req, res, next) {
-    User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-        if (err) return next(err);
-        res.json(post);
-    });
+    User.findByIdAndRemove(req.params.id, req.body).then((result) =>
+        res.json(result).send(200)
+    ).catch((err) => {
+        res.send(409)
+
+    })
 });
 
 module.exports = router;
