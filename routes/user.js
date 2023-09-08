@@ -17,7 +17,7 @@ async function getUsers(searchFunc) {
 router.get('/', (req, res) => {
 
     User.find({}).then((result) =>
-        res.send(200).json(result)
+        res.json(result).send(200)
 
     ).catch((err) => {
         res.json(err)
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 
 router.get('/:uName', function (req, res, next) {
     User.find({ username: req.params.uName }).then((result) =>
-        res.send(200).json(result)
+    res.json(result).send(200)
 
     ).catch((err) => {
         res.json(err)
@@ -49,7 +49,7 @@ router.post('/',bodyParser.json(), function (req, res, next) {
         Email: req.body.email
 
     }).then((result) =>
-        res.send(201).json(result)
+    res.json(result).send(201)
 
     ).catch((err) => {
         res.send(409)
