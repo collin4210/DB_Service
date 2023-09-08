@@ -9,14 +9,12 @@ api.use('/user', user);
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/FDDW', {
-    poolSize: 10,
     authSource: "admin",
     user: "ObiWan",
     pass: "HelloThere!",
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false 
+    useUnifiedTopology: true
+   
 
 })
    .then(() =>  console.log('connection successful'))
