@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/user.js');
+import bodyParser from 'body-parser';
 
 
 //Aus irgendeinem Grund geht das nur so, frag nicht danke!
@@ -37,7 +38,7 @@ router.get('/:uName', function (req, res, next) {
 
 });
 
-router.post('/', function (req, res, next) {
+router.post('/',bodyParser.json(), function (req, res, next) {
     User.create({
         username: req.body.username,
         name: req.body.name,
