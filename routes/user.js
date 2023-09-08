@@ -45,7 +45,7 @@ router.post('/', function (req, res, next) {
         PLZ: req.body.plz,
         Adresse: req.body.adresse,
         Stadt: req.body.stadt,
-        Email: Sreq.body.email
+        Email: req.body.email
 
     }).then((result) =>
         res.send(201).json(result)
