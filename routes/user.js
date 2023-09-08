@@ -53,7 +53,7 @@ router.post('/',bodyParser.json(), function (req, res, next) {
 
 router.delete('/:id', function (req, res, next) {
     User.findByIdAndRemove(req.params.id, req.body).then((result) =>
-        res.send(200)
+        res.sendStatus(200)
     ).catch((err) => {
         res.send(409)
 
