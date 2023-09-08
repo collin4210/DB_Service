@@ -9,27 +9,45 @@ async function getUsers(searchFunc) {
     const Users = await searchFunc;
     return Users;
 
-
 }
 
+
+
 router.get('/', (req, res) => {
-    
-    const result = getUsers(User.find({}));
-    res.json( result);
+
+    User.find({}).then((result) =>
+        res.json(result)
+
+    ).catch((err) => {
+        res.json(err)
+
+    })
+
+
 });
 
 router.get('/:uName', function (req, res, next) {
-   const result = getUsers(User.find({username: req.params.uName }));
-   res.json(result);
+    User.find({ username: req.params.uName }).then((result) =>
+        res.json(result)
+
+    ).catch((err) => {
+        res.json(err)
+
+    })
 
 });
 
 router.post('/', function (req, res, next) {
-    User.create(req.body, function (err, post) {
-        if (err) return next(err);
-        res.json(post);
-    });
+    User.create(req.body).then((result) =>
+        res.json(result)
+
+    ).catch((err) => {
+        res.json(err)
+
+    })
+
 });
+
 
 router.delete('/:id', function (req, res, next) {
     User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
