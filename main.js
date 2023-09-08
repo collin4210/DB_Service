@@ -4,6 +4,8 @@ const PORT = process.env.port || 5555;
 const api = express();
 var user = require('./routes/user');
 api.use('/user', user);
+var user = require('./routes/tool');
+api.use('/tool', tool);
 var bodyParser = require('body-parser')
 
 mongoose.Promise = global.Promise;
