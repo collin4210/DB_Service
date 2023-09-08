@@ -38,7 +38,16 @@ router.get('/:uName', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    User.create(req.body).then((result) =>
+    User.create({
+        username: req.body.username,
+        name: req.body.name,
+        nachname: req.body.nachname,
+        PLZ: req.body.plz,
+        Adresse: req.body.adresse,
+        Stadt: req.body.stadt,
+        Email: Sreq.body.email
+
+    }).then((result) =>
         res.json(result)
 
     ).catch((err) => {
