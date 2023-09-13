@@ -5,7 +5,7 @@ var Tool = require('../models/tool.js');
 var bodyParser = require('body-parser')
 
 
-
+//Alle Werkzeuge mit allen Daten ausgeben
 router.get('/', (req, res) => {
 
     Tool.find({}).then((result) =>
@@ -19,7 +19,21 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/:bezeichnung', function (req, res, next) {
+
+//Ein Werkzeug mit einer bestimmten ID ausgeben
+router.get('/:tid', function (req, res, next) {
+    Tool.find({ _id : req.params.tid }).then((result) =>
+    res.json(result).sendStatus(200)
+
+    ).catch((err) => {
+ 
+
+    })
+
+});
+
+//Werkzeuge mit einer bestimmten Bezeichnung ausgeben
+router.get('/search/:bezeichnung', function (req, res, next) {
     Tool.find({ bezeichnung : req.params.bezeichnung }).then((result) =>
     res.json(result).sendStatus(200)
 
@@ -30,7 +44,8 @@ router.get('/:bezeichnung', function (req, res, next) {
 
 });
 
-router.get('/:id/ausleihen', function (req, res, next) {
+//Ein Werkzeug als ausgeliehen oder verfügbar flaggen
+router.put('/:id/status', function (req, res, next) {
     Tool.findById({ _id: req.params.id }).then((result) => {
         var update = true
             if(result.ausgeliehen == true)    {
@@ -48,7 +63,8 @@ router.get('/:id/ausleihen', function (req, res, next) {
 
 });
 
-router.put('/:id/status', function (req, res, next) {
+//Ist ein werkzeug ausgeliehen?
+router.get('/:id/status', function (req, res, next) {
     Tool.findById({ _id: req.params.id }).then((result) =>
     res.json(result).sendStatus(200)
 
@@ -60,7 +76,7 @@ router.put('/:id/status', function (req, res, next) {
 });
 
 
-
+//Ein Werkzeug hinzufügen
 router.post('/',bodyParser.json(), function (req, res, next) {
     Tool.create({
         bezeichnug: req.body.bezeichnug,
@@ -77,7 +93,7 @@ router.post('/',bodyParser.json(), function (req, res, next) {
 
 });
 
-
+//Werkzeug mit ID löschen
 router.delete('/:id', function (req, res, next) {
     Tool.findByIdAndRemove(req.params.id).then((result) =>
         res.sendStatus(200)

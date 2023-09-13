@@ -9,6 +9,8 @@ api.use('/tool', tool);
 var bodyParser = require('body-parser')
 
 mongoose.Promise = global.Promise;
+
+
 //connection established
 mongoose.connect('mongodb://localhost/FDDW', {
     authSource: "admin",
@@ -22,6 +24,8 @@ mongoose.connect('mongodb://localhost/FDDW', {
    .then(() =>  console.log('connection successful'))
    .catch((err) => console.error(err));
 
+
+//Server starten   
 api.listen(PORT, () => {
 
     console.log("API läuft!", PORT)

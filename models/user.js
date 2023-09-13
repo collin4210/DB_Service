@@ -1,6 +1,9 @@
+//Bauplan für einen User
+
 var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
  username: String,
+ password: String,
  name: String,
  nachname: String,
  PLZ: Number,
